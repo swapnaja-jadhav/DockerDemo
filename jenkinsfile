@@ -1,0 +1,29 @@
+pipeline {
+    agent {
+        node {
+            label 'jenkins-slave'
+        }
+    }
+    stages {
+        stage('SCM checkout'){
+            steps {
+		        git "https://github.com/swapnaja-jadhav/DockerDemo.git"
+            }
+		}
+	    stage('Build docker Image'){
+	        steps {
+    	        	sh "sudo docker build /home/ubuntu/jenkins/workspace/firstjob -t swapnaja/dockerdemo"
+	        }
+	    }
+	    stage('Remove existing website'){
+	        steps {
+		    	sh "if [ `sudo docker ps -a -q|wc -l` -gt 0 ]; then sudo docker rm -f \$(sudo docker ps -a -q);fi"
+	        }
+	    }
+	    stage('Deploy website'){
+	        steps {
+    	        	sh "sudo docker run -d -p 82:80 --name mywebsite swapnaja/dockerdemo"
+	        }
+	    }
+    }
+}
