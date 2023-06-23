@@ -7,5 +7,5 @@ RUN apt update
 RUN apt install -y nginx php-fpm supervisor
 RUN rm -rf /var/lib/apt/lists/*
 RUN apt clean
-ADD ./DockerDemo /var/www/html/DockerDemo
+ADD . /var/www/html/DockerDemo
 EXPOSE 80 443
