@@ -8,11 +8,12 @@ pipeline {
         stage('SCM checkout'){
             steps {
 		        git "https://github.com/swapnaja-jadhav/DockerDemo.git"
+			sh "echo success"
             }
 		}
 	    stage('Build docker Image'){
 	        steps {
-    	        	sh "sudo docker build /home/ubuntu/jenkins/workspace/firstjob -t swapnaja/dockerdemo"
+    	        	sh "sudo docker build /home/ubuntu/jenkins/workspace/firstjob -t dockerdemo"
 	        }
 	    }
 	    stage('Remove existing website'){
