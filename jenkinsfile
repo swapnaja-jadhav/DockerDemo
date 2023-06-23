@@ -7,7 +7,7 @@ pipeline {
     stages {
         stage('SCM checkout'){
             steps {
-		       // git "https://github.com/swapnaja-jadhav/DockerDemo.git"
+		       git "https://github.com/swapnaja-jadhav/DockerDemo.git"
 			sh "echo success"
             }
 		}
@@ -23,7 +23,7 @@ pipeline {
 	    }
 	    stage('Deploy website'){
 	        steps {
-    	        	sh "sudo docker run -d -p 82:80 --name mywebsite swapnaja/dockerdemo"
+    	        	sh "sudo docker run -d -p 82:80 --name mywebsite dockerdemo"
 	        }
 	    }
     }
